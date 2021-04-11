@@ -26,13 +26,11 @@
     "eventemitter"
   ],
   "scripts": {
+    "build": "tsc",
     "lint": "eslint example/ lib/ test/",
     "mocha": "mocha -t 5000 --exit",
     "test": "npm run lint && npm run mocha",
     "docs": "jsdoc2md -t jsdoc2md/README.hbs --partial jsdoc2md/*.hbs --files lib/*.js > README.md"
-  },
-  "bin": {
-    "crawl": "./lib/cli.js"
   },
   "main": "./lib/index.js",
   "dependencies": {
@@ -42,15 +40,14 @@
     "urijs": "^1.19.1"
   },
   "devDependencies": {
+    "@types/node": "^14.14.37",
     "chai": "^4.2.0",
     "eslint": "^6.5.1",
     "jsdoc-to-markdown": "^5.0.1",
-    "mocha": "^7.0.1"
+    "mocha": "^7.0.1",
+    "typescript": "^4.2.4"
   },
   "engines": {
-    "node": ">=8"
-  },
-  "files": [
-    "lib"
-  ]
+    "node": ">=14"
+  }
 }
