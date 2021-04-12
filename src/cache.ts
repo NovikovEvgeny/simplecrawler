@@ -12,6 +12,11 @@ import { backend as FilesystemBackend } from "./cache-backend-fs.js";
 import { NodeCallback, QueueItem } from "./types"
 import { CacheBackend, CacheObject, CacheObjectGet } from "./types/cache.js";
 
+export declare interface Cache {
+  emit(event: "setcache", queueItem: QueueItem, data: string | NodeJS.ArrayBufferView): boolean;
+  on(event: "setcache", listener: (queueItem: QueueItem, data: string | NodeJS.ArrayBufferView) => void): this;
+}
+
 // TODO typings for events
 export class Cache extends EventEmitter {
   private datastore: CacheBackend;

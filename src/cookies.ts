@@ -6,7 +6,14 @@ import { EventEmitter } from 'events';
 import { NodeCallback } from './types';
 
 
-// TODO typings for "fires"
+export declare interface CookieJar {
+  emit(event: 'addcookie', newCookie: Cookie): boolean;
+  emit(event: 'removecookie', cookiesRemoved: Cookie[]): boolean;
+
+  on(event: 'addcookie', listener: (newCookie: Cookie) => void): this;
+  on(event: 'removecookie', listener: (cookiesRemoved: Cookie[]) => void): this;
+}
+
 export class CookieJar extends EventEmitter {
   private cookies: Cookie[] = [];
 
@@ -14,7 +21,6 @@ export class CookieJar extends EventEmitter {
   * Adds a new cookie to the jar, either by creating a new {@link Cookie} object
   * from specific details such as name, value, etc., accepting a string from a
   * Set-Cookie header, or by passing in an existing {@link Cookie} object.
-  * @fires CookieJar#addcookie
   * @param name Name of the new cookie
   * @param value Value of the new cookie
   * @param expiry Expiry timestamp of the new cookie in milliseconds
@@ -43,11 +49,6 @@ export class CookieJar extends EventEmitter {
       this.cookies[existingIndex] = newCookie;
     }
 
-    /**
-     * Fired when a cookie has been added to the jar
-     * @event CookieJar#addcookie
-     * @param {Cookie} cookie The cookie that has been added
-     */
     this.emit("addcookie", newCookie);
 
     if (callback instanceof Function) {
@@ -61,7 +62,6 @@ export class CookieJar extends EventEmitter {
   /**
   * Removes cookies from the cookie jar. If no domain and name are specified, all
   * cookies in the jar are removed.
-  * @fires CookieJar#removecookie
   * @param name Name of the cookie to be removed
   * @param domain The domain that the cookie applies to
   * @return Returns an array of the cookies that were removed from the cookie jar
@@ -86,11 +86,6 @@ export class CookieJar extends EventEmitter {
       cookiesRemoved.push(this.cookies.splice(index, 1));
     });
 
-    /**
-     * Fired when one or multiple cookie have been removed from the jar
-     * @event CookieJar#removecookie
-     * @param {Cookie[]} cookie The cookies that have been removed
-     */
     this.emit("removecookie", cookiesRemoved);
 
     if (callback instanceof Function) {
@@ -159,7 +154,6 @@ export class CookieJar extends EventEmitter {
   /**
   * Adds cookies to the cookie jar based on an array of 'Set-Cookie' headers
   * provided by a web server. Duplicate cookies are overwritten.
-  * @fires CookieJar#addcookie
   * @param headers One or multiple Set-Cookie headers to be added to the cookie jar
   * @return Returns the cookie jar instance to enable chained API calls
   */
