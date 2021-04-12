@@ -63,13 +63,13 @@ class QueueAddErrorImpl extends Error implements QueueAddError {
 }
 
 export enum QueueItemStatus {
-    QUEUED = "queued",
-    SPOOLED = "spooled",
-    HEADERS = "headers",
-    DOWNLOAD = "download",
-    REDIRECTED = "redirected",
-    NOTFOUND = "notfound",
-    FAILED = "failed",
+  QUEUED = "queued",
+  SPOOLED = "spooled",
+  HEADERS = "headers",
+  DOWNLOAD = "download",
+  REDIRECTED = "redirected",
+  NOTFOUND = "notfound",
+  FAILED = "failed",
 }
 
 /**
@@ -274,7 +274,7 @@ export class FetchQueue extends Array<QueueItem> implements FetchQueueInterface 
       }
     });
 
-    fs.writeFile(filename, JSON.stringify(this, null, 2), function(err) {
+    fs.writeFile(filename, JSON.stringify(this, null, 2), function (err) {
       callback(err);
     });
   }
