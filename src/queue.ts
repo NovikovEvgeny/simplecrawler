@@ -94,7 +94,6 @@ export class FetchQueue extends Array<QueueItem> implements FetchQueueInterface 
   * {@link FetchQueue#min}, {@link FetchQueue#avg} and {@link FetchQueue#max}
   * methods.
   */
-  // TODO make const?
   @enumerable(false)
   private _allowedStatistics: Set<string> = new Set();
 
@@ -188,11 +187,10 @@ export class FetchQueue extends Array<QueueItem> implements FetchQueueInterface 
     callback(null, null);
   }
 
-  // TODO change statisticName to ENUM?
+  // TODO change statisticName to ENUM or fix validation to use keyof (type guard)
   max(statisticName: keyof StateData, callback: NodeCallback<number>): void {
     let maximum = 0;
 
-    // TODO fix validation to use keyof (type guard)
     if (!this._allowedStatistics.has(statisticName)) {
       return callback(new Error("Invalid statistic"));
     }

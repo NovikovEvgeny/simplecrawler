@@ -30,8 +30,7 @@ export class CookieJar extends EventEmitter {
   * @return Returns the cookie jar instance to enable chained API calls
   */
   add(name: string | Cookie, value?: string, expiry?: string | number, path?: string, domain?: string, httponly?: boolean, callback?: NodeCallback<Cookie>): CookieJar {
-    // TODO fix any
-    let newCookie: any = {};
+    let newCookie: Cookie;
 
     if (arguments.length > 1) {
       newCookie = new Cookie(String(name), value, expiry, path, domain, httponly);
@@ -81,9 +80,7 @@ export class CookieJar extends EventEmitter {
       }
 
       // Matched. Remove!
-      // TODO fix ts ignore
-      //@ts-ignore
-      cookiesRemoved.push(this.cookies.splice(index, 1));
+      cookiesRemoved.push(this.cookies.splice(index, 1)[0]);
     });
 
     this.emit("removecookie", cookiesRemoved);

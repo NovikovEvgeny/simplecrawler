@@ -17,7 +17,6 @@ export declare interface Cache {
   on(event: "setcache", listener: (queueItem: QueueItem, data: string | NodeJS.ArrayBufferView) => void): this;
 }
 
-// TODO typings for events
 export class Cache extends EventEmitter {
   private datastore: CacheBackend;
 
