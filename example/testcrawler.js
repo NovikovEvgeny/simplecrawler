@@ -1,4 +1,4 @@
-var Crawler = require("../");
+var Crawler = require("../").default;
 var crawler = new Crawler("http://127.0.0.1:3000/");
 
 crawler.on("crawlstart", function() {

@@ -2,7 +2,7 @@
 
 var chai = require("chai"),
     http = require("http"),
-    Crawler = require("../");
+    Crawler = require("../").default;
 
 var routes = require("./lib/routes.js"),
     Server = require("./lib/testserver.js");
@@ -161,7 +161,7 @@ describe("Fetch conditions", function() {
                     depth: 1,
                     protocol: "http",
                     host: "127.0.0.1",
-                    port: "3000",
+                    port: 3000,
                     path: "/"
                 });
 
@@ -185,7 +185,7 @@ describe("Fetch conditions", function() {
                     depth: 2,
                     protocol: "http",
                     host: "127.0.0.1",
-                    port: "3000",
+                    port: 3000,
                     path: "/stage2"
                 });
 
@@ -430,7 +430,7 @@ describe("Download conditions", function() {
                 depth: 1,
                 protocol: "http",
                 host: "127.0.0.1",
-                port: "3000",
+                port: 3000,
                 path: "/"
             });
 

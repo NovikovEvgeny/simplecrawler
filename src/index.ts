@@ -1,9 +1,10 @@
-module.exports = require("./crawler.js");
+import { Crawler } from "./crawler";
 
-module.exports.queue = require("./queue.js");
-module.exports.cache = require("./cache.js");
 
-module.exports.crawl = function () {
+export { FetchQueue as queue } from "./queue";
+export { Cache as cache } from "./cache";
+
+export function crawl() {
     throw new Error(
         "Crawler.crawl is deprecated as of version 1.0.0! " +
         "You can now pass a single URL directly to the constructor. " +
@@ -11,3 +12,5 @@ module.exports.crawl = function () {
     );
 };
 
+
+export default Crawler;

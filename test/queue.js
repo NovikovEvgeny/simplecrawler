@@ -1,7 +1,7 @@
 /* eslint-env mocha */
 
 var chai = require("chai"),
-    Crawler = require("../"),
+    Crawler = require("../").default,
     queue = require("./fixtures/queue.json");
 
 var routes = require("./lib/routes.js"),

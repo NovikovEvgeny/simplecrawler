@@ -4,8 +4,9 @@ var path = require("path"),
     fs = require("fs"),
     chai = require("chai");
 
-var Crawler = require("../");
-var Cache = Crawler.cache;
+var WholeCrawler = require("../");
+var Crawler = WholeCrawler.default;
+var Cache = WholeCrawler.cache;
 
 var routes = require("./lib/routes.js"),
     Server = require("./lib/testserver.js");

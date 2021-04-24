@@ -63,6 +63,7 @@ class QueueAddErrorImpl extends Error implements QueueAddError {
 }
 
 export enum QueueItemStatus {
+  CREATED = "created",
   QUEUED = "queued",
   SPOOLED = "spooled",
   HEADERS = "headers",

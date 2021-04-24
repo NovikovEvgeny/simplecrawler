@@ -3,7 +3,7 @@
 /* eslint-env mocha */
 
 var chai = require("chai"),
-    Crawler = require("../");
+    Crawler = require("../").default;
 
 chai.should();
 

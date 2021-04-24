@@ -206,7 +206,7 @@ class FSBackend implements CacheBackend {
     });
   }
 
-  getItem(queueObject: QueueItem, callback: NodeCallback<CacheObjectGet>): void {
+  getItem(queueObject: QueueItem, callback: (cacheObject: CacheObjectGet) => void): void {
     const cacheItemResult = this.index.filter((item) => item.url === queueObject.url);
 
     if (cacheItemResult.length) {
@@ -229,6 +229,8 @@ class FSBackend implements CacheBackend {
         getMetadata: (cb: NodeCallback<Buffer>) => {
           fs.readFile(cacheItem.metaFile, (error, data) => {
             if (error) {
+              // TODO
+              //@ts-ignore
               callback(error);
               return false;
             }
@@ -238,6 +240,8 @@ class FSBackend implements CacheBackend {
         }
       });
     } else {
+      // TODO
+      //@ts-ignore
       callback(null);
     }
   }

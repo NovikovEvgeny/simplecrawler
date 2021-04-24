@@ -9,7 +9,7 @@ chai.should();
 // right off the bat
 describe("Crawler object", function() {
 
-    var Crawler = require("../");
+    var Crawler = require("../").default;
 
     it("should be able to be required", function() {
         Crawler.should.be.a("function");
@@ -27,15 +27,4 @@ describe("Crawler object", function() {
         var crawler = new Crawler("http://127.0.0.1:3000/");
         crawler.should.be.an.instanceof(Crawler);
     });
-
-    it("should be able to be initialised without the `new` operator", function() {
-        function listener () {}
-
-        var crawler = Crawler("http://127.0.0.1:3000/").on("fetchcomplete", listener),
-            listeners = crawler.listeners("fetchcomplete");
-
-        crawler.should.be.an.instanceof(Crawler);
-        listeners[0].should.equal(listener);
-    });
-
 });

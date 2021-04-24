@@ -8,7 +8,7 @@ var chai = require("chai"),
 
 chai.should();
 
-var Crawler = require("../");
+var Crawler = require("../").default;
 
 var routes = require("./lib/routes.js"),
     Server = require("./lib/testserver.js");

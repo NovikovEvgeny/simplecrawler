@@ -1,4 +1,4 @@
-var Crawler = require("../");
+var Crawler = require("../").default;
 var socks   = require("socksv5");
 
 var socksAuthNone = socks.auth.None;

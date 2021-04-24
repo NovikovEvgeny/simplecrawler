@@ -1,3 +1,4 @@
+import { QueueItemStatus } from "../queue";
 import { AnyObject, NodeCallback } from "./shared";
 
 export interface StateData {
@@ -24,7 +25,7 @@ export interface QueueItem {
   referrer: string;
   fetched: boolean;
   stateData: StateData;
-  status: 'queued' | 'spooled' | 'headers' | 'downloaded' | 'redirected' | 'notfound' | 'failed';
+  status: QueueItemStatus;
 }
 
 export interface FetchQueueInterface {

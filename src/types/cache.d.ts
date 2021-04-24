@@ -28,3 +28,9 @@ export interface CacheBackend {
 
   getItem(queueObject: QueueItem, callback: NodeCallback<CacheObjectGet>): void;
 }
+
+export interface SimpleCache {
+  setCacheData(queueItem: QueueItem, data: string | NodeJS.ArrayBufferView, callback?: NodeCallback<CacheObject>): void;
+  getCacheData(queueItem: QueueItem, callback: (cacheObject: CacheObjectGet) => void): void;
+  saveCache(): void;
+}

@@ -6,7 +6,7 @@
 var chai = require("chai"),
     uri = require("urijs");
 
-var Crawler = require("../");
+var Crawler = require("../").default;
 
 var routes = require("./lib/routes.js"),
     Server = require("./lib/testserver.js");
@@ -276,7 +276,7 @@ describe("Test Crawl", function() {
 
         crawler.on("complete", function() {
             crawler.queue.exists("http://127.0.0.1:3000/not/existent/file.js", function(error, exists) {
-                exists.should.equal(0);
+                exists.should.equal(false);
                 done(error);
             });
         });

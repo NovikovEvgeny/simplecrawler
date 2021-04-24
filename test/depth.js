@@ -1,7 +1,7 @@
 /* eslint-env mocha */
 
 var chai = require("chai"),
-    Crawler = require("../");
+    Crawler = require("../").default;
 
 var routes = require("./lib/routes.js"),
     Server = require("./lib/testserver.js");
