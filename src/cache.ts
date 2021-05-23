@@ -8,7 +8,7 @@
 
 import { EventEmitter } from "events";
 
-import { backend as FilesystemBackend } from "./cache-backend-fs.js";
+import { backend as FilesystemBackend } from "./cache-backend-fs";
 import { NodeCallback, QueueItem, CacheBackend, CacheObject, CacheObjectGet, SimpleCache } from "./types"
 
 export declare interface Cache {
@@ -19,7 +19,7 @@ export declare interface Cache {
 export class Cache extends EventEmitter implements SimpleCache {
   private datastore: CacheBackend;
 
-  constructor(cacheLoadParameter: string, cacheBackendFactory: (loadParameter: string) => CacheBackend) {
+  constructor(cacheLoadParameter: string, cacheBackendFactory?: (loadParameter: string) => CacheBackend) {
     super();
     // Ensure parameters are how we want them...
     cacheBackendFactory = typeof cacheBackendFactory === "function" ? cacheBackendFactory : FilesystemBackend;
@@ -44,6 +44,3 @@ export class Cache extends EventEmitter implements SimpleCache {
     this.datastore.saveCache();
   }
 }
-
-export { FilesystemBackend };
-

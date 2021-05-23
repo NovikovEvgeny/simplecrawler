@@ -65,17 +65,17 @@ export class CookieJar extends EventEmitter {
   * @param domain The domain that the cookie applies to
   * @return Returns an array of the cookies that were removed from the cookie jar
   */
-  remove(name: string, domain: string, callback?: NodeCallback<Cookie[]>): Cookie[] {
+  remove(name: string, domain?: string, callback?: NodeCallback<Cookie[]>): Cookie[] {
     const cookiesRemoved: Cookie[] = [];
 
     this.cookies.forEach((cookie, index) => {
       // If the names don't match, we're not removing this cookie
-      if (Boolean(name) && cookie.name !== name) {
+      if (name && cookie.name !== name) {
         return false;
       }
 
       // If the domains don't match, we're not removing this cookie
-      if (Boolean(domain) && !cookie.matchDomain(domain)) {
+      if (domain && !cookie.matchDomain(domain)) {
         return false;
       }
 
@@ -99,14 +99,14 @@ export class CookieJar extends EventEmitter {
   * @param domain Domain to retrieve the cookies from
   * @return Returns an array of cookies that matched the name and/or domain
   */
-  get(name: string, domain: string, callback?: NodeCallback<Cookie[]>): Cookie[] {
+  get(name: string, domain?: string, callback?: NodeCallback<Cookie[]>): Cookie[] {
     const cookies = this.cookies.filter((cookie) => {
       // If the names don't match, we're not returning this cookie
-      if (Boolean(name) && cookie.name !== name) {
+      if (name && cookie.name !== name) {
         return false;
       }
       // If the domains don't match, we're not returning this cookie
-      if (Boolean(domain) && !cookie.matchDomain(domain)) {
+      if (domain && !cookie.matchDomain(domain)) {
         return false;
       }
       return true;

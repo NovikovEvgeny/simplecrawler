@@ -28,7 +28,7 @@ export interface QueueItem {
   status: QueueItemStatus;
 }
 
-export interface FetchQueueInterface {
+export interface FetchQueueInterface extends Array<QueueItem> {
   /**
   * Adds an item to the queue
   * @param {QueueItem} queueItem Queue item that is to be added to the queue

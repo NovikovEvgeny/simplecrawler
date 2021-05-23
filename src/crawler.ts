@@ -123,8 +123,8 @@ export declare interface Crawler {
    * @param queueItem The queue item that was added to the queue
    * @param referrer  The queue item representing the resource where the new queue item was found
    */
-  emit(event: "queueadd", queueItem: QueueItem, referrer: QueueItem): boolean;
-  on(event: "queueadd", listener: (queueItem: QueueItem, referrer: QueueItem) => void): this;
+  emit(event: "queueadd", queueItem: QueueItem, referrer?: QueueItem): boolean;
+  on(event: "queueadd", listener: (queueItem: QueueItem, referrer?: QueueItem) => void): this;
 
   /**
    * Fired just after a request has been initiated
@@ -274,7 +274,7 @@ export declare interface Crawler {
    * Fired when the crawl has completed - all resources in the queue have been dealt with
    */
    emit(event: "complete"): boolean;
-   on(event: "complete"): this;
+   on(event: "complete", listener: () => void): this;
 }
 
 export class Crawler extends EventEmitter {
@@ -885,6 +885,7 @@ export class Crawler extends EventEmitter {
     return Array.from(URLs);
   }
 
+  // TODO change behavior to throw or return QueueItem only
   /**
   * Constructs a queue item from a URL and a referrer queue item.
   * @param url An absolute or relative URL to construct a queue item from
@@ -1479,7 +1480,7 @@ export class Crawler extends EventEmitter {
   * @param force If true, the URL will be queued regardless of whether it already exists in the queue or not.
   * @return The return value used to indicate whether the URL passed all fetch conditions and robots.txt rules. With the advent of async fetch conditions, the return value will no longer take fetch conditions into account.
   */
-  queueURL(url: QueueItem | string, referrer: QueueItem, force?: boolean): boolean {
+  queueURL(url: QueueItem | string, referrer?: QueueItem, force?: boolean): boolean {
     const queueItem = typeof url === "object" ? url : this.processURL(url, referrer);
 
     // URL Parser decided this URL was junky. Next please!
